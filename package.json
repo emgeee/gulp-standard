@@ -1,0 +1,29 @@
+{
+  "name": "gulp-standard",
+  "version": "0.0.1",
+  "description": "gulp plugin for checking JavaScript code with the standard syntax",
+  "main": "index.js",
+  "keywords": [],
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emgeee/gulp-standard"
+  },
+  "author": "Matt Green <mgreen9@gmail.com> (http://emgeee.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emgeee/gulp-standard/issues"
+  },
+  "homepage": "https://github.com/emgeee/gulp-standard",
+  "dependencies": {
+    "gulp-util": "^3.0.4",
+    "standard": "^3.2.0",
+    "through2": "^0.6.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "mocha": "^2.2.1"
+  }
+}
