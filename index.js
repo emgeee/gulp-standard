@@ -8,7 +8,6 @@ function gulpStandard (opts) {
   opts = opts || {}
 
   function processFile (file, enc, cb) {
-    var self = this
 
     if (file.isNull()) {
       return cb(null, file)
@@ -19,7 +18,7 @@ function gulpStandard (opts) {
       return cb()
     }
 
-    standard.lintText(String(file.contents), opts, function(err, data) {
+    standard.lintText(String(file.contents), opts, function (err, data) {
       if (err) {
         return cb(err)
       }
