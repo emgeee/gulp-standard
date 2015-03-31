@@ -1,10 +1,12 @@
 var through2 = require('through2')
 var standard = require('standard')
-var gutil    = require('gulp-util')
+var gutil = require('gulp-util')
 
 var PLUGIN_NAME = 'gulp-standard'
 
-function gulpStandard () {
+function gulpStandard (opts) {
+  opts = opts || {}
+
   function processFile (file, enc, cb) {
     var self = this
 
@@ -17,23 +19,13 @@ function gulpStandard () {
       return cb()
     }
 
-
-    this.push(file)
-    cb()
-    // var string = String(file.contents);
-    // standard.lintText(string, {}, function (err, res) {
-    //
-    //   if(err) {
-    //     cb(err)
-    //   } else if (!!res.results[0].errorCount) {
-    //     self.push(file)
-    //
-    //     cb(new Error(res.results[0].messages))
-    //   } else {
-    //     self.push(file)
-    //     cb()
-    //   }
-    // })
+    standard.lintText(String(file.contents), opts, function(err, data) {
+      if (err) {
+        return cb(err)
+      }
+      file.standard = data
+      cb(null, file)
+    })
   }
 
   return through2.obj(processFile)

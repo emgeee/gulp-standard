@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "gulp plugin for checking JavaScript code with the standard syntax",
   "main": "index.js",
-  "keywords": [],
+  "keywords": [
+    "standard",
+    "gulpplugin"
+  ],
   "scripts": {
     "test": "mocha"
   },
@@ -19,11 +22,11 @@
   "homepage": "https://github.com/emgeee/gulp-standard",
   "dependencies": {
     "gulp-util": "^3.0.4",
-    "standard": "^3.2.0",
+    "standard": "^3.3.0",
     "through2": "^0.6.3"
   },
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "mocha": "^2.2.1"
+    "mocha": "^2.2.1",
+    "should": "^5.2.0"
   }
 }
