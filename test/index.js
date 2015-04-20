@@ -8,7 +8,6 @@ var standard = require('../')
 require('mocha')
 
 var testFile1 = fs.readFileSync('test/fixtures/testFile1.js')
-var testFile2 = fs.readFileSync('test/fixtures/testFile2.js')
 
 describe('gulp-standard', function () {
   it('should lint files', function (done) {
