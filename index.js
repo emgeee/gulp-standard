@@ -10,7 +10,6 @@ function gulpStandard (opts) {
   opts = opts || {}
 
   function processFile (file, enc, cb) {
-
     if (file.isNull()) {
       return cb(null, file)
     }
@@ -20,7 +19,7 @@ function gulpStandard (opts) {
       return cb()
     }
 
-    standard.lintText(String(file.contents), opts, function(err, data) {
+    standard.lintText(String(file.contents), opts, function (err, data) {
       if (err) {
         return cb(err)
       }
@@ -34,12 +33,10 @@ function gulpStandard (opts) {
 
 gulpStandard.reporter = function (reporter, opts) {
   // Load default reporter
-  if (reporter === 'default')
-    return defaultReporter(opts)
+  if (reporter === 'default') return defaultReporter(opts)
 
   // Load reporter from function
-  if (typeof reporter === 'function')
-    return reporter(opts)
+  if (typeof reporter === 'function') return reporter(opts)
 
   // load built-in reporters
   if (typeof reporter === 'string') {
