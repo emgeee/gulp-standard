@@ -3,7 +3,8 @@
 var through2 = require('through2'),
   standard = require('standard'),
   gutil = require('gulp-util'),
-  PLUGIN_NAME = require('./package.json').name
+  PLUGIN_NAME = require('./package.json').name,
+  defaultReporter = require('./reporters/stylish')
 
 function gulpStandard (opts) {
   opts = opts || {}
@@ -32,10 +33,27 @@ function gulpStandard (opts) {
 }
 
 gulpStandard.reporter = function (reporter, opts) {
+  // Load default reporter
+  if (reporter === 'default')
+    return defaultReporter(opts)
+
+  // Load reporter from function
   if (typeof reporter === 'function')
     return reporter(opts)
-  if (typeof reporter === 'string')
-    return require('gulp-standard/reporters/' + reporter)(opts)
+
+  // load built-in reporters
+  if (typeof reporter === 'string') {
+    try {
+      return require('gulp-standard/reporters/' + reporter)(opts)
+    } catch (err) {}
+  }
+
+  // load full-path or module reporters
+  if (typeof reporter === 'string') {
+    try {
+      return require(reporter)(opts)
+    } catch (err) {}
+  }
 }
 
 module.exports = gulpStandard
