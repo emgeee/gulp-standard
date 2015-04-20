@@ -21,7 +21,7 @@ describe('gulp-standard', function () {
     stream.once('data', function (newFile) {
       should.exist(newFile)
       should.exist(newFile.standard)
-      should(newFile.standard.results[0].messages[0].message).equal('Expected \'===\' and instead saw \'==\'.')
+      should(newFile.standard.results[0].messages[0].message).equal("Expected '===' and instead saw '=='.")
       done()
     })
     stream.write(fakeFile)

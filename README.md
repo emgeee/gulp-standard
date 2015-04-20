@@ -35,17 +35,60 @@ $ npm install --save-dev gulp-standard
 ## Examples
 
 ```javascript
-
 // include the required packages.
-var gulp = require('gulp');
-var standard = require('gulp-standard');
+var gulp = require('gulp'),
+  standard = require('gulp-standard')
 
-
+gulp.task('standard', function () {
+  return gulp.src(['./app.js'])
+    .pipe(standard())
+    .pipe(standard.reporter('default', {
+      breakOnError: true
+    }))
+})
 ```
 
-#####You can view more examples in the [example folder.](https://github.com/emgeee/gulp-standard/tree/master/examples)
+## Reporters
 
-## Options
+#### Built-in
+
+You can choose a reporter when you call
+````javascript
+stuff
+  .pipe(standard())
+  .pipe(standard.reporter('default', opts))
+External
+````
+
+You can also use some other custom made reporter
+````javascript
+var reporter = require(<SOME_REPORTER>);
+
+stuff
+  .pipe(standard())
+  .pipe(standard.reporter(reporter, opts))
+````
+OR - 
+````javascript
+stuff
+  .pipe(standard())
+  .pipe(standard.reporter(<REPORTER NAME>, opts))
+````
+#### Reporter options
+
+##### breakOnError
+
+Type: `boolean`
+Default: `false`
+
+Emit gulp error on reported error
+
+##### breakOnWarning
+
+Type: `boolean`
+Default: `false`
+
+Emit gulp error on reported warning
 
 
 ## LICENSE [MIT](LICENSE)
