@@ -1,8 +1,9 @@
-var through2 = require('through2')
-var standard = require('standard')
-var gutil = require('gulp-util')
+'use strict'
 
-var PLUGIN_NAME = 'gulp-standard'
+var through2 = require('through2'),
+  standard = require('standard'),
+  gutil = require('gulp-util'),
+  PLUGIN_NAME = require('./package.json').name
 
 function gulpStandard (opts) {
   opts = opts || {}
@@ -18,7 +19,7 @@ function gulpStandard (opts) {
       return cb()
     }
 
-    standard.lintText(String(file.contents), opts, function (err, data) {
+    standard.lintText(String(file.contents), opts, function(err, data) {
       if (err) {
         return cb(err)
       }
@@ -28,6 +29,13 @@ function gulpStandard (opts) {
   }
 
   return through2.obj(processFile)
+}
+
+gulpStandard.reporter = function (reporter, opts) {
+  if (typeof reporter === 'function')
+    return reporter(opts)
+  if (typeof reporter === 'string')
+    return require('gulp-standard/reporters/' + reporter)(opts)
 }
 
 module.exports = gulpStandard
