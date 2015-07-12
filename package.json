@@ -1,6 +1,6 @@
 {
   "name": "gulp-standard",
-  "version": "0.0.3",
+  "version": "4.5.3",
   "description": "gulp plugin for checking JavaScript code with the standard syntax",
   "main": "index.js",
   "keywords": [
@@ -22,15 +22,15 @@
   "homepage": "https://github.com/emgeee/gulp-standard",
   "dependencies": {
     "app-root-path": "^1.0.0",
-    "colors": "^1.0.3",
-    "gulp-util": "^3.0.4",
+    "colors": "^1.1.2",
+    "gulp-util": "^3.0.6",
     "log-symbols": "^1.0.2",
     "path": "^0.11.14",
-    "standard": "^3.9.0",
-    "through2": "^0.6.3"
+    "standard": "^4.5.3",
+    "through2": "^2.0.0"
   },
   "devDependencies": {
-    "mocha": "^2.2.1",
-    "should": "^5.2.0"
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
   }
 }
