@@ -87,7 +87,7 @@ function Stylish (options) {
       if (totalErrorCount && options.breakOnError) {
         this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Linter errors occurred!'))
       }
-      if (totalErrorCount && options.breakOnWarning) {
+      if (totalWarningCount && options.breakOnWarning) {
         this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Linter warnings occurred!'))
       }
     })
