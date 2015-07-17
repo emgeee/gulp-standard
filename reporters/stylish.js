@@ -9,16 +9,8 @@ var path = require('path'),
   PLUGIN_NAME = require('../package.json').name
 
 function Stylish (options) {
-  // Default options
-  var opts = {
-      breakOnError: false,
-      breakOnWarning: false
-    },
-    totalErrorCount = 0,
-    totalWarningCount = 0
-
-  // Extend and override default options with the ones user has set
-  for (var attr in options) { opts[attr] = options[attr] }
+  var totalErrorCount = 0
+  var totalWarningCount = 0
 
   // File specific reporter
   function reportFile (filepath, data) {
