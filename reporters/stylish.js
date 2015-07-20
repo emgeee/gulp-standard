@@ -58,8 +58,7 @@ function Stylish (options) {
     }
 
     if (file.isStream()) {
-      this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
-      return cb()
+      return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
     }
 
     // Report file specific stuff only when there are some errors/warnings
@@ -77,10 +76,10 @@ function Stylish (options) {
 
       // If user wants gulp to break execution on reported errors or warnings
       if (totalErrorCount && options.breakOnError) {
-        this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Linter errors occurred!'))
+        this.emit(new gutil.PluginError(PLUGIN_NAME, 'Linter errors occurred!'))
       }
       if (totalWarningCount && options.breakOnWarning) {
-        this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Linter warnings occurred!'))
+        this.emit(new gutil.PluginError(PLUGIN_NAME, 'Linter warnings occurred!'))
       }
     })
 }

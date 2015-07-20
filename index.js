@@ -15,8 +15,7 @@ function gulpStandard (opts) {
     }
 
     if (file.isStream()) {
-      this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
-      return cb()
+      return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
     }
 
     standard.lintText(String(file.contents), opts, function (err, data) {
