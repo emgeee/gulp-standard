@@ -76,10 +76,10 @@ function Stylish (options) {
 
       // If user wants gulp to break execution on reported errors or warnings
       if (totalErrorCount && options.breakOnError) {
-        this.emit(new gutil.PluginError(PLUGIN_NAME, 'Linter errors occurred!'))
+        this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Linter errors occurred!'))
       }
       if (totalWarningCount && options.breakOnWarning) {
-        this.emit(new gutil.PluginError(PLUGIN_NAME, 'Linter warnings occurred!'))
+        this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Linter warnings occurred!'))
       }
     })
 }
