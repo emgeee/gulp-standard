@@ -1,6 +1,6 @@
 {
   "name": "gulp-standard",
-  "version": "5.2.2",
+  "version": "6.0.5",
   "description": "gulp plugin for checking JavaScript code with the standard syntax",
   "main": "index.js",
   "keywords": [
@@ -26,7 +26,7 @@
     "gulp-util": "^3.0.6",
     "log-symbols": "^1.0.2",
     "path": "^0.11.14",
-    "standard": "^5.2.2",
+    "standard": "^6.0.5",
     "through2": "^2.0.0"
   },
   "devDependencies": {
