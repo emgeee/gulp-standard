@@ -30,7 +30,7 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "mocha": "^2.2.5",
-    "should": "^8.3.1"
+    "mocha": "^3.0.2",
+    "should": "^11.1.0"
   }
 }
