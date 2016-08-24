@@ -1,6 +1,6 @@
 {
   "name": "gulp-standard",
-  "version": "7.0.1",
+  "version": "8.0.0",
   "description": "gulp plugin for checking JavaScript code with the standard syntax",
   "main": "index.js",
   "keywords": [
@@ -26,11 +26,11 @@
     "gulp-util": "^3.0.6",
     "log-symbols": "^1.0.2",
     "path": "^0.12.7",
-    "standard": "^7.0.1",
+    "standard": "^8.0.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "mocha": "^2.2.5",
-    "should": "^8.3.1"
+    "mocha": "^3.0.2",
+    "should": "^11.1.0"
   }
 }
