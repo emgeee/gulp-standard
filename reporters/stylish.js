@@ -33,24 +33,17 @@ function Stylish (options) {
     return lines.join('\n') + '\n'
   }
 
-  // Reporter header
-  function reportHeader () {
-    console.log(colors.green('Standard linter results'))
-    console.log('======================================\n')
-  }
-
   // Reporter footer
   function reportFooter () {
     if (totalErrorCount === 0 && totalWarningCount === 0) {
-      console.log(logSymbols.success + ' ' + colors.green('All OK!'))
-    } else {
-      console.log('======================================')
-      console.log(logSymbols.error + colors.red(' Errors total: ' + totalErrorCount))
-      console.log(logSymbols.warning + colors.yellow(' Warnings total: ' + totalWarningCount) + '\n')
+      if (options.quiet) return
+      return console.log(colors.green('Standard linter results: ') + logSymbols.success + ' ' + colors.green('All OK!'))
     }
+    console.log(colors.green('Standard linter results'))
+    console.log('======================================')
+    console.log(logSymbols.error + colors.red(' Errors total: ' + totalErrorCount))
+    console.log(logSymbols.warning + colors.yellow(' Warnings total: ' + totalWarningCount) + '\n')
   }
-
-  reportHeader()
 
   return through2.obj(function (file, enc, cb) {
     if (file.isNull()) {
