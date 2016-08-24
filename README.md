@@ -43,7 +43,8 @@ gulp.task('standard', function () {
   return gulp.src(['./app.js'])
     .pipe(standard())
     .pipe(standard.reporter('default', {
-      breakOnError: true
+      breakOnError: true,
+      quiet: true
     }))
 })
 ```
@@ -90,5 +91,11 @@ Default: `false`
 
 Emit gulp error on reported warning
 
+##### quiet
+
+Type: `boolean`
+Default: `false`
+
+Suppress success messages, only show errors
 
 ## LICENSE [MIT](LICENSE)
