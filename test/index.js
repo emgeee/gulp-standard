@@ -8,6 +8,7 @@ var standard = require('../')
 require('mocha')
 
 var testFile1 = fs.readFileSync('test/fixtures/testFile1.js')
+var testFile2 = fs.readFileSync('test/fixtures/testFile2.js')
 
 describe('gulp-standard', function () {
   it('should lint files', function (done) {
@@ -22,6 +23,23 @@ describe('gulp-standard', function () {
       should.exist(newFile)
       should.exist(newFile.standard)
       should(newFile.standard.results[0].messages[0].message).equal("Expected '===' and instead saw '=='.")
+      done()
+    })
+    stream.write(fakeFile)
+    stream.end()
+  })
+
+  it('should catch broken syntax', function (done) {
+    var stream = standard()
+    var fakeFile = new gutil.File({
+      base: 'test/fixtures',
+      cwd: 'test/',
+      path: 'test/fixtures/testFile2.js',
+      contents: testFile2
+    })
+    stream.once('data', function (newFile) {
+      should(newFile.standard.results[0].messages[0].message)
+        .equal("Parsing error: Unexpected token }")
       done()
     })
     stream.write(fakeFile)
