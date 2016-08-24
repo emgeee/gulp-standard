@@ -36,8 +36,8 @@ $ npm install --save-dev gulp-standard
 
 ```javascript
 // include the required packages.
-var gulp = require('gulp'),
-  standard = require('gulp-standard')
+var gulp = require('gulp')
+var standard = require('gulp-standard')
 
 gulp.task('standard', function () {
   return gulp.src(['./app.js'])
@@ -62,13 +62,13 @@ External
 
 You can also use some other custom made reporter
 ````javascript
-var reporter = require(<SOME_REPORTER>);
+var reporter = require(<SOME_REPORTER>)
 
 stuff
   .pipe(standard())
   .pipe(standard.reporter(reporter, opts))
 ````
-OR - 
+OR -
 ````javascript
 stuff
   .pipe(standard())
