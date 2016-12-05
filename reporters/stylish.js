@@ -23,7 +23,7 @@ function Stylish (options) {
     data.results.forEach(function (file) {
       file.messages.forEach(function (msg) {
 		var context = colors.yellow('line ' + msg.line + ':' + msg.column)
-		var message = colors.cyan(msg.message)
+		var message = colors.cyan(msg.message + (options.showRuleNames ? ' (' + msg.ruleId + ')' : ''))
         lines.push(context + '\t' + message)
       })
     })

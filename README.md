@@ -98,4 +98,11 @@ Default: `false`
 
 Suppress success messages, only show errors
 
+##### showRuleNames
+
+Type: `boolean`
+Default: `false`
+
+Show rule names for errors/warnings (to ignore specific rules)
+
 ## LICENSE [MIT](LICENSE)
