@@ -22,7 +22,7 @@ function Stylish (options) {
     // Loop file specific error/warning messages
     data.results.forEach(function (file) {
       file.messages.forEach(function (msg) {
-		var context = colors.yellow('line ' + msg.line + ':' + msg.column)
+		var context = colors.yellow((options.showFilePath ? filepath + ':' : 'line ') + msg.line + ':' + msg.column)
 		var message = colors.cyan(msg.message + (options.showRuleNames ? ' (' + msg.ruleId + ')' : ''))
         lines.push(context + '\t' + message)
       })

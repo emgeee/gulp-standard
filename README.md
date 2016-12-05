@@ -105,4 +105,11 @@ Default: `false`
 
 Show rule names for errors/warnings (to ignore specific rules)
 
+##### showFilePath
+
+Type: `boolean`
+Default: `false`
+
+Show the full file path with the line and column numbers (useful for IDEs that will link to that location)
+
 ## LICENSE [MIT](LICENSE)
