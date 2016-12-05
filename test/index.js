@@ -39,7 +39,7 @@ describe('gulp-standard', function () {
     })
     stream.once('data', function (newFile) {
       should(newFile.standard.results[0].messages[0].message)
-        .equal("Parsing error: Unexpected token }")
+        .equal('Parsing error: Unexpected token }')
       done()
     })
     stream.write(fakeFile)
