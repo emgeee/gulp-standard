@@ -1,10 +1,10 @@
 'use strict'
 
-var through2 = require('through2'),
-  standard = require('standard'),
-  gutil = require('gulp-util'),
-  PLUGIN_NAME = require('./package.json').name,
-  defaultReporter = require('./reporters/stylish')
+var through2 = require('through2')
+var standard = require('standard')
+var gutil = require('gulp-util')
+var PLUGIN_NAME = require('./package.json').name
+var defaultReporter = require('./reporters/stylish')
 
 function gulpStandard (opts) {
   opts = opts || {}

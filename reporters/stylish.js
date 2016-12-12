@@ -1,12 +1,12 @@
 'use strict'
 
-var path = require('path'),
-  through2 = require('through2'),
-  gutil = require('gulp-util'),
-  colors = require('colors/safe'),
-  logSymbols = require('log-symbols'),
-  appRoot = require('app-root-path'),
-  PLUGIN_NAME = require('../package.json').name
+var path = require('path')
+var through2 = require('through2')
+var gutil = require('gulp-util')
+var colors = require('colors/safe')
+var logSymbols = require('log-symbols')
+var appRoot = require('app-root-path')
+var PLUGIN_NAME = require('../package.json').name
 
 function Stylish (options) {
   var totalErrorCount = 0
@@ -22,8 +22,9 @@ function Stylish (options) {
     // Loop file specific error/warning messages
     data.results.forEach(function (file) {
       file.messages.forEach(function (msg) {
-        var line = colors.yellow('line ' + msg.line + ':' + msg.column) + '\t' + colors.cyan(msg.message)
-        lines.push(line)
+        var context = colors.yellow((options.showFilePath ? filepath + ':' : 'line ') + msg.line + ':' + msg.column)
+        var message = colors.cyan(msg.message + (options.showRuleNames ? ' (' + msg.ruleId + ')' : ''))
+        lines.push(context + '\t' + message)
       })
     })
 
