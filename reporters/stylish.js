@@ -11,6 +11,7 @@ var PLUGIN_NAME = require('../package.json').name
 function Stylish (options) {
   var totalErrorCount = 0
   var totalWarningCount = 0
+  options = options || {}
 
   // File specific reporter
   function reportFile (filepath, data) {
@@ -63,7 +64,7 @@ function Stylish (options) {
       console.log(reportFile(file.path, file.standard))
     }
 
-    cb()
+    cb(null, file)
   })
     .on('end', function () {
       reportFooter()
