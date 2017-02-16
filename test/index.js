@@ -45,4 +45,23 @@ describe('gulp-standard', function () {
     stream.write(fakeFile)
     stream.end()
   })
+
+  it('should continue the stream', function (done) {
+    var stream = standard()
+    var reporter = standard.reporter('default')
+    var fakeFile = new gutil.File({
+      base: 'test/fixtures',
+      cwd: 'test/',
+      path: 'test/fixtures/testFile2.js',
+      contents: testFile2
+    })
+    stream.write(fakeFile)
+    stream.pipe(reporter)
+    .once('data', function (newFile) {
+      should(newFile.standard.results[0].messages[0].message)
+        .equal('Parsing error: Unexpected token }')
+      done()
+    })
+    stream.end()
+  })
 })
