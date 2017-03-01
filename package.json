@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/emgeee/gulp-standard",
   "dependencies": {
-    "app-root-path": "^1.0.0",
+    "app-root-path": "^2.0.0",
     "colors": "^1.1.2",
     "gulp-util": "^3.0.6",
     "log-symbols": "^1.0.2",
