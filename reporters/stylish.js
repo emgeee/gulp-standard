@@ -47,26 +47,27 @@ function Stylish (options) {
     console.log(logSymbols.warning + colors.yellow(' Warnings total: ' + totalWarningCount) + '\n')
   }
 
-  return through2.obj(function (file, enc, cb) {
-    if (file.isNull()) {
-      return cb(null, file)
-    }
+  return through2.obj(
+    function transform (file, enc, cb) {
+      if (file.isNull()) {
+        return cb(null, file)
+      }
 
-    if (file.isStream()) {
-      return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
-    }
+      if (file.isStream()) {
+        return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
+      }
 
-    // Report file specific stuff only when there are some errors/warnings
-    if (file.standard && (file.standard.errorCount || file.standard.warningCount)) {
-      totalErrorCount += file.standard.errorCount
-      totalWarningCount += file.standard.warningCount
+      // Report file specific stuff only when there are some errors/warnings
+      if (file.standard && (file.standard.errorCount || file.standard.warningCount)) {
+        totalErrorCount += file.standard.errorCount
+        totalWarningCount += file.standard.warningCount
 
-      console.log(reportFile(file.path, file.standard))
-    }
+        console.log(reportFile(file.path, file.standard))
+      }
 
-    cb(null, file)
-  })
-    .on('end', function () {
+      cb(null, file)
+    },
+    function flush (cb) {
       reportFooter()
 
       // If user wants gulp to break execution on reported errors or warnings
@@ -76,6 +77,7 @@ function Stylish (options) {
       if (totalWarningCount && options.breakOnWarning) {
         this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Linter warnings occurred!'))
       }
+      cb()
     })
 }
 
