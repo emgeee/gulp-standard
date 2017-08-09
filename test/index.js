@@ -9,6 +9,7 @@ require('mocha')
 
 var testFile1 = fs.readFileSync('test/fixtures/testFile1.js')
 var testFile2 = fs.readFileSync('test/fixtures/testFile2.js')
+var testFile3 = fs.readFileSync('test/fixtures/testFile3.js')
 
 describe('gulp-standard', function () {
   it('should lint files', function (done) {
@@ -62,6 +63,27 @@ describe('gulp-standard', function () {
         .equal('Parsing error: Unexpected token }')
       done()
     })
+    stream.end()
+  })
+
+  it('should automatically format code', function (done) {
+    var stream = standard({
+      fix: true
+    })
+    var fakeFile = new gutil.File({
+      base: 'test/fixtures',
+      cwd: 'test/',
+      path: 'test/fixtures/testFile3.js',
+      contents: testFile3
+    })
+    stream.once('data', function (newFile) {
+      should.exist(newFile)
+      should.exist(newFile.standard)
+      should.ok(newFile.standard.fixed)
+      should(newFile.contents.toString()).equal('var a = 1\n')
+      done()
+    })
+    stream.write(fakeFile)
     stream.end()
   })
 })

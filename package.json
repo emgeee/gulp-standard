@@ -35,6 +35,8 @@
     "should": "^11.1.0"
   },
   "standard": {
-    "ignore": ["test/fixtures/"]
+    "ignore": [
+      "test/fixtures/**/*"
+    ]
   }
 }
