@@ -7,8 +7,6 @@ var PLUGIN_NAME = require('./package.json').name
 var defaultReporter = require('./reporters/stylish')
 
 function gulpStandard (opts) {
-  opts = opts || {}
-
   function processFile (file, enc, cb) {
     if (file.isNull()) {
       return cb(null, file)
@@ -18,11 +16,17 @@ function gulpStandard (opts) {
       return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
     }
 
-    standard.lintText(String(file.contents), opts, function (err, data) {
+    standard.lintText(String(file.contents), Object.assign({
+      filename: file.path
+    }, opts), function (err, data) {
       if (err) {
         return cb(err)
       }
       file.standard = data
+      if (data.results[0].output) {
+        file.contents = Buffer.from(data.results[0].output)
+        data.fixed = true
+      }
       cb(null, file)
     })
   }
