@@ -3,6 +3,7 @@
 var fs = require('fs')
 var should = require('should')
 var gutil = require('gulp-util')
+var os = require('os')
 var standard = require('../')
 
 require('mocha')
@@ -80,7 +81,7 @@ describe('gulp-standard', function () {
       should.exist(newFile)
       should.exist(newFile.standard)
       should.ok(newFile.standard.fixed)
-      should(newFile.contents.toString()).equal('var a = 1\n')
+      should(newFile.contents.toString()).equal('var a = 1' + os.EOL)
       done()
     })
     stream.write(fakeFile)
