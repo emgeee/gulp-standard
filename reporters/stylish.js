@@ -2,7 +2,7 @@
 
 var path = require('path')
 var through2 = require('through2')
-var gutil = require('gulp-util')
+var PluginError = require('plugin-error')
 var colors = require('colors/safe')
 var logSymbols = require('log-symbols')
 var appRoot = require('app-root-path')
@@ -54,7 +54,7 @@ function Stylish (options) {
       }
 
       if (file.isStream()) {
-        return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
+        return cb(new PluginError(PLUGIN_NAME, 'Streams are not supported!'))
       }
 
       // Report file specific stuff only when there are some errors/warnings
@@ -72,10 +72,10 @@ function Stylish (options) {
 
       // If user wants gulp to break execution on reported errors or warnings
       if (totalErrorCount && options.breakOnError) {
-        this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Linter errors occurred!'))
+        this.emit('error', new PluginError(PLUGIN_NAME, 'Linter errors occurred!'))
       }
       if (totalWarningCount && options.breakOnWarning) {
-        this.emit('error', new gutil.PluginError(PLUGIN_NAME, 'Linter warnings occurred!'))
+        this.emit('error', new PluginError(PLUGIN_NAME, 'Linter warnings occurred!'))
       }
       cb()
     })
