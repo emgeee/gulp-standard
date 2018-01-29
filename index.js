@@ -2,7 +2,7 @@
 
 var through2 = require('through2')
 var standard = require('standard')
-var gutil = require('gulp-util')
+var PluginError = require('plugin-error')
 var PLUGIN_NAME = require('./package.json').name
 var defaultReporter = require('./reporters/stylish')
 
@@ -13,7 +13,7 @@ function gulpStandard (opts) {
     }
 
     if (file.isStream()) {
-      return cb(new gutil.PluginError(PLUGIN_NAME, 'Streams are not supported!'))
+      return cb(new PluginError(PLUGIN_NAME, 'Streams are not supported!'))
     }
 
     standard.lintText(String(file.contents), Object.assign({

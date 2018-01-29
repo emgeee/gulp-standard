@@ -2,7 +2,8 @@
 
 var fs = require('fs')
 var should = require('should')
-var gutil = require('gulp-util')
+var Vinyl = require('vinyl')
+var os = require('os')
 var standard = require('../')
 
 require('mocha')
@@ -14,7 +15,7 @@ var testFile3 = fs.readFileSync('test/fixtures/testFile3.js')
 describe('gulp-standard', function () {
   it('should lint files', function (done) {
     var stream = standard()
-    var fakeFile = new gutil.File({
+    var fakeFile = new Vinyl({
       base: 'test/fixtures',
       cwd: 'test/',
       path: 'test/fixtures/testFile1.js',
@@ -32,7 +33,7 @@ describe('gulp-standard', function () {
 
   it('should catch broken syntax', function (done) {
     var stream = standard()
-    var fakeFile = new gutil.File({
+    var fakeFile = new Vinyl({
       base: 'test/fixtures',
       cwd: 'test/',
       path: 'test/fixtures/testFile2.js',
@@ -50,7 +51,7 @@ describe('gulp-standard', function () {
   it('should continue the stream', function (done) {
     var stream = standard()
     var reporter = standard.reporter('default')
-    var fakeFile = new gutil.File({
+    var fakeFile = new Vinyl({
       base: 'test/fixtures',
       cwd: 'test/',
       path: 'test/fixtures/testFile2.js',
@@ -70,7 +71,7 @@ describe('gulp-standard', function () {
     var stream = standard({
       fix: true
     })
-    var fakeFile = new gutil.File({
+    var fakeFile = new Vinyl({
       base: 'test/fixtures',
       cwd: 'test/',
       path: 'test/fixtures/testFile3.js',
@@ -80,7 +81,7 @@ describe('gulp-standard', function () {
       should.exist(newFile)
       should.exist(newFile.standard)
       should.ok(newFile.standard.fixed)
-      should(newFile.contents.toString()).equal('var a = 1\n')
+      should(newFile.contents.toString()).equal('var a = 1' + os.EOL)
       done()
     })
     stream.write(fakeFile)
