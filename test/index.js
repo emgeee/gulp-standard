@@ -87,4 +87,20 @@ describe('gulp-standard', function () {
     stream.write(fakeFile)
     stream.end()
   })
+
+  it('shouldn\'t break when trying to lint ignored files', function (done) {
+    var stream = standard()
+    var fakeFile = new Vinyl({
+      path: 'node_modules/test/testFile1.js',
+      contents: testFile1
+    })
+    stream.on('error', function (error) {
+      done(error)
+    })
+    stream.once('data', function (newFile) {
+      done()
+    })
+    stream.write(fakeFile)
+    stream.end()
+  })
 })
