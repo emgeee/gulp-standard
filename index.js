@@ -23,7 +23,7 @@ function gulpStandard (opts) {
         return cb(err)
       }
       file.standard = data
-      if (data.results[0].output) {
+      if (data.results[0] && data.results[0].output) {
         file.contents = Buffer.from(data.results[0].output)
         data.fixed = true
       }
