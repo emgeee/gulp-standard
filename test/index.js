@@ -59,11 +59,11 @@ describe('gulp-standard', function () {
     })
     stream.write(fakeFile)
     stream.pipe(reporter)
-    .once('data', function (newFile) {
-      should(newFile.standard.results[0].messages[0].message)
-        .equal('Parsing error: Unexpected token }')
-      done()
-    })
+      .once('data', function (newFile) {
+        should(newFile.standard.results[0].messages[0].message)
+          .equal('Parsing error: Unexpected token }')
+        done()
+      })
     stream.end()
   })
 
