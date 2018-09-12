@@ -16,7 +16,7 @@
 </tr>
 <tr>
 <td>Node version</td>
-<td>>= 0.9</td>
+<td>>=6 </td>
 </tr>
 <tr>
 <td>gulp version</td>
